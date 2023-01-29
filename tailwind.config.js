@@ -7,18 +7,20 @@ module.exports = {
     container: {
       center: true,
       padding: {
-          DEFAULT: '2rem',
-          sm: '1rem',
-          lg: '4rem',
-          xl: '6rem',
+          DEFAULT: '1rem',
+          sm: '0.5rem',
+          lg: '2rem',
+          xl: '3rem',
       },
     },
     extend: {
       colors:{
         'main-bg':'#F5F5F9',
+        "main-blue":"#548ADB",
         'secondary':'#326ABD',
         'sidebar':'#363740',
         'sidebar-item':"#DDE2FF",
+        'sidebar-active':"#9FA2B4",
         'ticket-head':'#212135',
         'confirm':'#59B638',
         'deny':'#E02424',
@@ -26,6 +28,7 @@ module.exports = {
         'text-main':'#033673',
         'text-title-bar':'#344ECE',
         'text':'#101828',
+        'text-gray':'#8A92A6'
       },
       fontFamily:{
         sans: ['yekanbakh'],

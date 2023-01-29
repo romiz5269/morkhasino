@@ -1,10 +1,12 @@
 import React from 'react'
+import MainLayout from '../../layout'
+import Dashboard from '../../components/dashboard/index'
 
 const PanelPage = () => {
   return (
-    <div>
-      this is panel
-    </div>
+    <MainLayout>
+      <Dashboard />
+    </MainLayout>
   )
 }
 
