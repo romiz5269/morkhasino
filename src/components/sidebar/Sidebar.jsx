@@ -30,11 +30,11 @@ const Sidebar = ({setOpenSidebar}) => {
                         ثبت مرخصی
                 </div>
             </div>
-            <div onClick={()=>navigate('/panel/tickets')} className={`grid grid-cols-12 px-7  py-4 relative ${pathname === "/panel/tickets" && 'before:absolute before:h-full before:w-1 before:bg-sidebar-item bg-sidebar-active/10'}  w-full cursor-pointer `}>
+            <div onClick={()=>navigate('/panel/tickets')} className={`grid grid-cols-12 px-7  py-4 relative ${(pathname === "/panel/tickets" || pathname === "/panel/tickets/create") && 'before:absolute before:h-full before:w-1 before:bg-sidebar-item bg-sidebar-active/10'}  w-full cursor-pointer `}>
                 <div className=' col-span-2 flex flex-row md:justify-end justify-start items-center ml-4'>
                     <DashboardSvg />
                 </div>
-                <div className={`col-span-10 flex flex-row justify-start items-center ${pathname === "/panel/tickets" && 'font-bold text-white'} text-sidebar-item`}>
+                <div className={`col-span-10 flex flex-row justify-start items-center ${(pathname === "/panel/tickets" || pathname === "/panel/tickets/create") && 'font-bold text-white'} text-sidebar-item`}>
                         تیکت
                 </div>
             </div>
