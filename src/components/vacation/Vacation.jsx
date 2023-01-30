@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import AddVacationForm from '../../validations/add-vacation/AddVacationForm'
 import Modal from '../modal/Modal'
 import Plus from '../svg/plus/Plus'
 import VacationDetailBox from '../vacation-detail-box/VacationDetailBox'
@@ -7,29 +8,29 @@ const Vacation = () => {
     const [openVacationDetailModal,setOpenVacationDetailModal] = useState(false)
     const [openAddVacationModal,setOpenAddVacationModal] = useState(false)
     useEffect(() => {
-        // only execute all the code below in client side
-        // Handler to call on window resize
+
         function handleResize() {
-            // Set window width/height to state
+            console.log('changed')
             if (window.innerWidth > 768) {
+                console.log('yes')
                 setOpenAddVacationModal(false)
                 setOpenVacationDetailModal(false)
             }
         }
 
-        // Add event listener
         window.addEventListener("resize", handleResize);
 
-        // Call handler right away so state gets updated with initial window size
-        // handleResize();
 
-        // Remove event listener on cleanup
         return () => window.removeEventListener("resize", handleResize);
     }, [])
     
 
     useEffect(() => {
+       if(window.innerWidth < 768) {
         (openVacationDetailModal || openAddVacationModal) ? document?.body.classList.add('overflow-hidden') : document?.body.classList.remove('overflow-hidden')
+       }else{
+        openAddVacationModal ? document?.body.classList.add('overflow-hidden') : document?.body.classList.remove('overflow-hidden')
+       }
 
     }, [openVacationDetailModal,openAddVacationModal])
   return (
@@ -37,7 +38,7 @@ const Vacation = () => {
          {/* open add ticket modal */}
 
         {
-                openVacationDetailModal &&
+                (openVacationDetailModal && window.innerWidth < 768) &&
                 <div
                     className='backdrop-blur-md w-full h-full fixed top-0 pt-3 left-0 z-50 flex flex-col items-center justify-start'
                     // onClick={(e)=>setOpenAddTicketModal(false)}
@@ -56,7 +57,7 @@ const Vacation = () => {
                     style={{backgroundColor: 'rgba(0,0,0,0.3)'}}
                 >
                     <Modal title={'ثبت مرخصی'} handleExitModal={setOpenAddVacationModal}>
-                        this is form
+                        <AddVacationForm />
                     </Modal>
                 </div>
         }
