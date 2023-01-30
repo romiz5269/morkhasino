@@ -81,3 +81,53 @@ body{
   stroke-dashoffset: calc(625px - (625px * var(--percent)) / 100);
   stroke: #326ABD; 
 }
+
+
+/* material mui pagination */
+.MuiPagination-ul{
+  background: transparent !important;
+}
+.MuiPagination-ul li{
+  background: #FFFFFF !important;
+  border: 1px solid #DFE3E8 !important;
+  border-radius: 4px !important;
+  margin: 0 2px;
+  height: 35px;
+  width: 35px;
+  display: flex ;
+  flex-direction: row;
+  justify-content: center;
+  justify-items: center;
+}
+.MuiPagination-ul li button{
+  width: 100%;
+  height: 100%;
+  border: none ;
+}
+
+.Mui-selected {
+  background-color: transparent !important;
+  margin: 0 1px;
+  color: #4200FF  !important;
+  border:2px solid #4200FF  !important;
+
+}
+.Mui-selected svg{
+  color: #4200FF  !important;
+  
+}
+.MuiDataGrid-cellContent:nth-child(1){
+  text-align: center !important;
+  width: 100%;
+}
+.MuiDataGrid-columnHeaderTitle{
+  text-align: center !important;
+  width: 100%;
+}
+
+.MuiDataGrid-columnHeaderTitleContainerContent{
+  width: 100%;
+}
+.MuiDataGrid-columnHeader .MuiDataGrid-columnSeparator{
+  display: none !important;
+}

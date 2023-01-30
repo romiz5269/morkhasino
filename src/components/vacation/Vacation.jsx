@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import AddVacationForm from '../../validations/add-vacation/AddVacationForm'
 import Modal from '../modal/Modal'
+import SearchBox from '../search-box/SearchBox'
 import Plus from '../svg/plus/Plus'
 import VacationDetailBox from '../vacation-detail-box/VacationDetailBox'
 const Vacation = () => {
@@ -63,7 +64,7 @@ const Vacation = () => {
         }
       <div className='flex md:flex-row flex-col justify-between items-center gap-y-4'>
         <div className='md:w-[370px] w-full'>
-            <input className='bg-white border-2 border-main-color w-full px-4 py-3 rounded-lg' type="text" placeholder="جستجو " />
+            <SearchBox />
         </div>
         <select className=' bg-white border-2 border-main-color px-4 py-3 md:w-[320px] w-full rounded-lg text-text-gray'>
             <option disabled={true} defaultChecked={true}>مرتب سازی بر اساس</option>

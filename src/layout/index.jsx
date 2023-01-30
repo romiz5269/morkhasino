@@ -15,6 +15,8 @@ const checkLocationPathname = () =>{
           return "تیکت ها";
       case "/panel/rules":
         return "قوانین و مقررات";
+      case "/panel/tickets/create":
+        return "افزودن تیکت";
       default:
         return "داشبورد";
   }
