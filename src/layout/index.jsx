@@ -1,6 +1,8 @@
+import ManagerSidebar from 'components/manager-sidebar/ManagerSidebar'
 import React, { useEffect, useLayoutEffect, useState } from 'react'
 import {HiBars3} from 'react-icons/hi2'
 import { useLocation } from 'react-router-dom'
+import AdminSidebar from '../components/admin-sidebar/AdminSidebar'
 import ProfileAvatar from '../components/profile-avatar/ProfileAvatar'
 import Sidebar from '../components/sidebar/Sidebar'
 import DashboardSvg from '../components/svg/dashboard/DashboardSvg'
@@ -17,13 +19,23 @@ const checkLocationPathname = () =>{
         return "قوانین و مقررات";
       case "/panel/tickets/create":
         return "افزودن تیکت";
+      case "/admin/dashboard":
+        return "داشبورد";
+      case "/admin/dashboard/add-user":
+        return "افزودن کاربر";
+      case "/admin/requests":
+        return "درخواست ها";
+      case "/admin/tickets":
+          return "تیکت ها";
+      case "/manager/dashboard":
+        return "داشبورد";
       default:
         return "داشبورد";
   }
     
 }
 
-const MainLayout = ({children}) => {
+const MainLayout = ({children,adminLayout=false,managerLayout=false}) => {
   // const location = useLocation()
     const [openSidebar,setOpenSidebar]= useState(false)
     const handleSidebar = (e) =>{
@@ -39,12 +51,16 @@ const MainLayout = ({children}) => {
             // onClick={(e)=>handleSidebar(e)}
             >
                 <div className={` bg-sidebar h-full z-20 w-4/5   transition-all ease-in duration-700 `}>
-                    <Sidebar setOpenSidebar={setOpenSidebar} />
+                    {
+                      adminLayout ? <AdminSidebar setOpenSidebar={setOpenSidebar} /> : managerLayout ? <ManagerSidebar setOpenSidebar={setOpenSidebar} />:<Sidebar setOpenSidebar={setOpenSidebar} />
+                    }
                 </div>
             </div>
         }
       <div className='md:col-span-2 md:flex flex-col hidden bg-sidebar min-h-screen'>
-        <Sidebar />
+        {
+                      adminLayout ? <AdminSidebar  /> : managerLayout ? <ManagerSidebar /> :<Sidebar  />
+          }
       </div>
       <div className='md:col-span-10 col-span-12'>
         <div className='bg-white border-b-2 border-b-main-color md:px-10 px-4 py-3 w-full'>

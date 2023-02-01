@@ -1,6 +1,6 @@
 import React from 'react'
-import CreateTicket from '../../components/add-ticket/CreateTicket'
-import MainLayout from '../../layout'
+import MainLayout from '../../../layout'
+import CreateTicket from '../../../components/add-ticket/CreateTicket'
 
 const CreateTicketPage = () => {
     return (

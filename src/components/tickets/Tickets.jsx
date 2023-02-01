@@ -3,9 +3,9 @@ import SearchBox from '../search-box/SearchBox'
 import Plus from '../svg/plus/Plus'
 import { DataGrid } from '@mui/x-data-grid';
 import { Box } from '@mui/system';
-import { Pagination, Stack } from '@mui/material';
+import { Button, Pagination, Stack } from '@mui/material';
 import Select from 'react-select'
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 const columns = [
     { field: 'id', headerName: 'ردیف', width: 60,headerClassName: 'table-header'},
     {
@@ -51,7 +51,7 @@ const columns = [
         sortable:false
       
   
-    },
+    }
 
   ];
   
@@ -83,7 +83,11 @@ const columns = [
 const Tickets = () => {
     const [page,setPage]=useState(5)
     const [currentPage,setCurentPage]=useState(1)
+    const navigate = useNavigate()
     console.log(page)
+    const handleRowClick = (params) => {
+      navigate(`/panel/tickets/detail/45`);
+    };
   return (
     <div className='bg-white py-4 px-5 rounded-lg'>
       <div className='text-2xl font-bold'>لیست تیکت ها</div>
@@ -151,7 +155,8 @@ const Tickets = () => {
                 page={currentPage-1}
                 onPageChange={(p)=>setCurentPage(p)}
                 showCellRightBorder={true}
-                disableSelectionOnClick
+               
+                onRowClick={handleRowClick}
                 
                 // experimentalFeatures={{ newEditingApi: true }}
             />

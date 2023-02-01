@@ -1,10 +1,9 @@
 import React from 'react'
-import MainLayout from '../../layout'
-import Dashboard from '../../components/dashboard/index'
-
+import MainLayout from '../../../layout'
+import Dashboard from '../../../components/dashboard'
 const PanelPage = () => {
   return (
-    <MainLayout>
+    <MainLayout adminLayout={false}>
       <Dashboard />
     </MainLayout>
   )

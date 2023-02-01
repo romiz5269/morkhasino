@@ -3,31 +3,14 @@ import persian from 'react-date-object/calendars/persian'
 import persian_fa from 'react-date-object/locales/persian_fa'
 import { Calendar } from 'react-multi-date-picker'
 import CircleChart from '../circle-chart/CircleChart'
+import Statistics from '../statistics/Statistics'
 import ChevronDown from '../svg/chevron-down/ChevronDown'
 
 const Dashboard = () => {
     const [accordion,setAccordion]=useState(false)
   return (
     <>
-      <div className='flex md:flex-row flex-col justify-evenly items-center gap-y-6 bg-white shadow-main rounded-md py-8 px-8'>
-        <div className='flex flex-col justify-center items-center'>
-            <span className='text-text text-2xl font-semibold'>2.5</span>
-            <span className='text-text-gray'>مرخصی کل ماه</span>
-        </div>
-        <div className='divider-horizontal md:hidden block w-full'></div>
-        <div className='divider-vertical md:block hidden'></div>
-        <div className='flex flex-col justify-center items-center'>
-            <span className='text-text text-2xl font-semibold'>2.5</span>
-            <span className='text-text-gray'>مرخصی کل ماه</span>
-        </div>
-        <div className='divider-horizontal md:hidden block w-full'></div>
-        <div className='divider-vertical md:block hidden'></div>
-        <div className='flex flex-col justify-center items-center'>
-            <span className='text-text text-2xl font-semibold'>2.5</span>
-            <span className='text-text-gray'>مرخصی کل ماه</span>
-        </div>
-
-      </div>
+      <Statistics />
       <div className='grid grid-cols-12 gap-x-5 gap-y-5 my-6'>
             <div className='md:col-span-4 col-span-12 bg-white shadow-main rounded-md py-8 px-7'>
                 <CircleChart hasPeriod={true} percent={20} />

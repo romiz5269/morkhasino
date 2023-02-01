@@ -1,10 +1,14 @@
+import Plus from 'components/svg/plus/Plus'
 import React from 'react'
 
-const ProfileAvatar = () => {
+const ProfileAvatar = ({size=48}) => {
   return (
-    <>
-      <img src='../images/png/test-profile.png' width="48" height="48" className='rounded-full' />
-    </>
+    <div className='relative'>
+      <img src='../images/png/test-profile.png' width={size} height={size} className='rounded-full border-2' />
+      <span className='absolute bottom-0 right-0 bg-secondary rounded-full'>
+        <Plus width={18} height={18}/>
+      </span>
+    </div>
   )
 }
 

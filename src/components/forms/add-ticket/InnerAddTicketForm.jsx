@@ -13,13 +13,8 @@ const options = [
 
 const InnerAddTicketForm = (props) => {
   return (
-    <Form className='bg-white rounded-lg px-5 py-4 space-y-5'>
-        <div className='w-full flex flex-row justify-between items-center '>
-            <span className='text-2xl font-bold'>افزودن تیکت</span>
-            <Link to="/panel/tickets" className='px-8 py-2 bg-deny text-white rounded-lg' >
-                انصراف 
-            </Link>
-        </div>
+    <Form className='w-full space-y-5'>
+        
         <div className='w-full'>
             <Field className="w-full shadow-sm border-2 border-main-color rounded-lg text-sm py-3 px-4" name="title" placeholder="عنوان تیکت را وارد کنید" />
         </div>
