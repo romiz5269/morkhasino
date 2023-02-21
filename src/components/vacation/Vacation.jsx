@@ -63,7 +63,7 @@ const Vacation = () => {
                 </div>
         }
       <div className='flex md:flex-row flex-col justify-between items-center gap-y-4'>
-        <div className='md:w-[370px] w-full'>
+        <div className='md:w-[400px] w-full bg-white'>
             <SearchBox />
         </div>
         <select className=' bg-white border-2 border-main-color px-4 py-3 md:w-[320px] w-full rounded-lg text-text-gray'>

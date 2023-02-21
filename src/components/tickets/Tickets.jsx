@@ -5,7 +5,8 @@ import { DataGrid } from '@mui/x-data-grid';
 import { Box } from '@mui/system';
 import { Button, Pagination, Stack } from '@mui/material';
 import Select from 'react-select'
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
+import DataTable from 'components/data-table/DataTable';
 const columns = [
     { field: 'id', headerName: 'ردیف', width: 60,headerClassName: 'table-header'},
     {
@@ -28,7 +29,7 @@ const columns = [
     {
       field: 'title',
       headerName: 'عنوان',
-      width: 570,
+      width: 640,
       headerClassName: 'table-header',
       sortable:false
     
@@ -46,7 +47,7 @@ const columns = [
     {
         field: 'updated_date',
         headerName: 'آخرین بروزرسانی',
-        width: 150,
+        width: 135,
         headerClassName: 'table-header',
         sortable:false
       
@@ -82,87 +83,33 @@ const columns = [
 
 const Tickets = () => {
     const [page,setPage]=useState(5)
-    const [currentPage,setCurentPage]=useState(1)
+    const [currentPage,setCurrentPage]=useState(1)
     const navigate = useNavigate()
-    console.log(page)
+    const location = useLocation()
+
     const handleRowClick = (params) => {
       navigate(`/panel/tickets/detail/45`);
     };
+
   return (
-    <div className='bg-white py-4 px-5 rounded-lg'>
-      <div className='text-2xl font-bold'>لیست تیکت ها</div>
+    <div className=' rounded-lg'>
+      {/* <div className='text-2xl font-bold pr-1'>لیست تیکت ها</div> */}
       <div className='flex md:flex-row flex-col gap-y-4 justify-between items-center my-5'>
-        <div className='md:w-[320px] w-full'>
+        <div className='md:w-[420px] w-full bg-white rounded-xl'>
             <SearchBox />
         </div>
-        <Link to={'/panel/tickets/create'} className='bg-main-blue flex flex-row justify-center items-center gap-x-2 px-5 py-3 rounded-lg cursor-pointer md:w-auto w-full'>
+        <Link to={`${location.pathname}/create`} className='bg-secondary flex flex-row justify-center items-center gap-x-2 px-16 py-3 rounded-lg cursor-pointer md:w-auto w-full'>
             <span className='text-white text-sm font-bold'>ایجاد تیکت</span>
             <Plus />
         </Link>
       </div>
-        <Box 
-        
-          sx={{
-            height: 320,
-            width: '100%',
-            '& .table-header': {
-              backgroundColor: '#212135',
-              color: '#fff',
-              fontFamily:'yekanbakh',
-              textAlign:'center',
-              fontWeight: '600',
-              borderRight:'none !important'
-            },
-            '& .table-row-odd': {
-                background: 'rgba(132, 129, 129, 0.09)',
-                fontFamily:'yekanbakh',
-                textAlign:'center',
-                fontWeight: '600',
-                borderRight:'none !important'
-            },
-            '& .table-row-even': {
-                fontFamily:'yekanbakh',
-                background: 'rgba(132, 129, 129, 0.03)',
-                textAlign:'center',
-                fontWeight: '600',
-                borderRight:'none !important'
-            },
-            '& .text-center': {
-              textAlign:'center',
-              fontWeight:'800'
-          },
-            
-          }}
-        >
 
-            <DataGrid
-                rows={rows}
-                getRowClassName={(params) =>
-                    params.indexRelativeToCurrentPage % 2 === 0 ? 'table-row-even' : 'table-row-odd'
-                  }
-                components={{
-                  NoRowsOverlay:()=><div className='flex flex-col justify-center items-center h-full text-xl' style={{fontFamily:'yekanbakh'}}>موردی برای نمایش وجود ندارد</div>,
-                  NoResultsOverlay:()=><div className='flex flex-col justify-center items-center h-full text-xl' style={{fontFamily:'yekanbakh'}}>موردی برای نمایش وجود ندارد</div>
-                }}  
-                columns={columns}
-                hideFooterPagination
-                hideFooter
-                hideFooterSelectedRowCount
-                pageSize={page}
-                disableColumnMenu
-                disableColumnFilter
-                rowsPerPageOptions={[page]}
-                page={currentPage-1}
-                onPageChange={(p)=>setCurentPage(p)}
-                showCellRightBorder={true}
-               
-                onRowClick={handleRowClick}
-                
-                // experimentalFeatures={{ newEditingApi: true }}
-            />
-        </Box>
-        <div  className='flex md:flex-row flex-col justify-between items-start gap-y-4 bg-text-gray/10 my-4 p-4 rounded-lg'>
-          <Pagination  sx={{'& .MuiPagination-ul':{background:'transparent'}}} defaultPage="1" dir='ltr' page={currentPage}  count={Math.ceil((rows.length/page))} onChange={(e,p)=>setCurentPage(p)}  variant="outlined" shape="rounded" />
+        <DataTable rows={rows} columns={columns} page={page} currentPage={currentPage}
+         setCurrentPage={setCurrentPage} handleRowClick={handleRowClick}
+          />
+
+        <div  className='flex md:flex-row flex-col justify-between items-start gap-y-4 bg-white my-4 p-4 rounded-lg'>
+          <Pagination  sx={{'& .MuiPagination-ul':{background:'transparent'}}} defaultPage="1" dir='ltr' page={currentPage}  count={Math.ceil((rows.length/page))} onChange={(e,p)=>setCurrentPage(p)}  variant="outlined" shape="rounded" />
           <div className='md:w-[200px] w-full'>
             <Select className='text-sm' defaultValue={{label:"نمایش 5 تایی",value:5}}  options={[{label:"نمایش 10 تایی",value:10},{label:"نمایش 5 تایی",value:5}]} onChange={(value)=>setPage(value.value)} />
 

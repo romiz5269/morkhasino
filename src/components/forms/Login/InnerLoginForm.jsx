@@ -8,15 +8,15 @@ const InnerLoginForm = ({props}) => {
 
   return (
     <Form className='w-full h-full flex flex-col gap-y-5'>
-        <h2 className='font-semibold text-lg self-center mb-3'>ورود</h2>
+        <h2 className='font-semibold text-lg self-center mb-3'>ورود به حساب کاربری</h2>
         <div className='w-full'>
-          <Field autoComplete="false" name="phone_number" className='w-full border-2 border-main-color  font-medium md:p-2 p-3 rounded-md' type="text" placeholder="شماره تلفن خود را وارد کنید ..." />
+          <Field autoComplete="false" name="phone_number" className='w-full  bg-custom-gray/5   font-medium md:px-3 py-4 px-3  rounded-md' type="text" placeholder="شماره تلفن خود را وارد کنید ..." />
           <ErrorMessage component="div" name='phone_number' className='text-xs text-red-600 mt-2' />
         </div>
         <div className='w-full relative'>
-          <Field autoComplete="false" name="password" className='w-full border-2 border-main-color  font-medium md:p-2 p-3 rounded-md' type={showPass ? 'text' : 'password'} placeholder="رمز عبور خود را وارد کنید ..." />
-          <span className='absolute md:top-3 top-4 left-3 cursor-pointer' onClick={()=>setShowPass(!showPass)}>
-            {showPass ?<PasswordEye /> : <AiOutlineEyeInvisible size={19} />}
+          <Field autoComplete="false" name="password" className='w-full  bg-custom-gray/5  font-medium md:px-3 py-4 px-3 rounded-md' type={showPass ? 'text' : 'password'} placeholder="رمز عبور خود را وارد کنید ..." />
+          <span className='absolute md:top-5 top-4 left-3 cursor-pointer' onClick={()=>setShowPass(!showPass)}>
+            {showPass ?<PasswordEye color='#4E5FFF' /> : <AiOutlineEyeInvisible color='#4E5FFF' size={19} />}
           </span>
           <ErrorMessage component="div" name='password' className='text-xs text-red-600 mt-2 leading-5 break-words' />
 

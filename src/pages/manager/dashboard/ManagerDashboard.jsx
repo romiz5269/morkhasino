@@ -1,12 +1,13 @@
+
 import Statistics from 'components/statistics/Statistics'
 import ChevronDown from 'components/svg/chevron-down/ChevronDown'
 import MainLayout from 'layout'
 import React, { useState } from 'react'
 
-const ManagerDashboardPage = () => {
+const ManagerDashboard = () => {
     const [accordion,setAccordion]=useState(false)
   return (
-    <MainLayout managerLayout={true}>
+    <>
       <Statistics />
       <div className='grid grid-cols-12 gap-x-5 my-3'>
         <div className='col-span-8'></div>
@@ -55,8 +56,8 @@ const ManagerDashboardPage = () => {
             </p>
         </div>
       </div>
-    </MainLayout>
+    </>
   )
 }
 
-export default ManagerDashboardPage
+export default ManagerDashboard

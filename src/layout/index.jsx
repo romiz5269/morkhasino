@@ -1,4 +1,5 @@
 import ManagerSidebar from 'components/manager-sidebar/ManagerSidebar'
+import AddIcon from 'components/svg/add-icon/AddIcon'
 import React, { useEffect, useLayoutEffect, useState } from 'react'
 import {HiBars3} from 'react-icons/hi2'
 import { useLocation } from 'react-router-dom'
@@ -24,7 +25,7 @@ const checkLocationPathname = () =>{
       case "/admin/dashboard/add-user":
         return "افزودن کاربر";
       case "/admin/requests":
-        return "درخواست ها";
+        return "مرخصی ها";
       case "/admin/tickets":
           return "تیکت ها";
       case "/manager/dashboard":
@@ -38,54 +39,54 @@ const checkLocationPathname = () =>{
 const MainLayout = ({children,adminLayout=false,managerLayout=false}) => {
   // const location = useLocation()
     const [openSidebar,setOpenSidebar]= useState(false)
+    const [pathname,setPathname] = useState(checkLocationPathname() )
+    const location = useLocation()
+    useEffect(()=>{
+      setPathname(checkLocationPathname())
+    },[location.pathname])
     const handleSidebar = (e) =>{
         e.preventDefault()
         setOpenSidebar(false)
     }
   return (
-    <div className='grid grid-cols-12'>
+    <div className='grid grid-cols-12 px-8 py-7  '>
         {
             openSidebar && 
             <div className='backdrop-blur-sm w-full h-full fixed top-0 left-0 z-10 md:hidden  flex-col items-start justify-center'
             style={{backgroundColor: 'rgba(0,0,0,0.3)'}} 
             // onClick={(e)=>handleSidebar(e)}
             >
-                <div className={` bg-sidebar h-full z-20 w-4/5   transition-all ease-in duration-700 `}>
+                <div style={{boxShadow:'0px 10.1248px 30.3745px rgba(17, 38, 146, 0.05)'}} className={` bg-white h-full z-20 w-4/5   transition-all ease-in duration-700 `}>
                     {
                       adminLayout ? <AdminSidebar setOpenSidebar={setOpenSidebar} /> : managerLayout ? <ManagerSidebar setOpenSidebar={setOpenSidebar} />:<Sidebar setOpenSidebar={setOpenSidebar} />
                     }
                 </div>
             </div>
         }
-      <div className='md:col-span-2 md:flex flex-col hidden bg-sidebar min-h-screen'>
+      <div style={{boxShadow:' 0px 10.1248px 30.3745px rgba(17, 38, 146, 0.05)'}} className='md:col-span-2 md:flex flex-col hidden bg-white min-h-screen rounded-3xl '>
         {
                       adminLayout ? <AdminSidebar  /> : managerLayout ? <ManagerSidebar /> :<Sidebar  />
           }
       </div>
-      <div className='md:col-span-10 col-span-12'>
-        <div className='bg-white border-b-2 border-b-main-color md:px-10 px-4 py-3 w-full'>
-            <div className='flex flex-row justify-between items-center'>
-                <div className='md:hidden block'>
-                    <span onClick={()=>setOpenSidebar(true)}><HiBars3 size={30} /></span>
-                </div>
-                <div className='flex flex-row justify-center items-center gap-x-3'>
-                    {/* <img src='images/png/hand.png' /> */}
-                    <h1 className=' md:text-3xl text-2xl font-bold md:hidden block'>مرخصینو</h1>
-
-                   <div className='md:flex hidden flex-row justify-center items-center gap-x-3'>
-                    <DashboardSvg color='#326ABD' width={30} height={30} />
-                    <span className='md:text-2xl text-secondary font-bold'>
-                      {checkLocationPathname()}
-                    </span>
-                   </div>
-                </div>
-                <div className='flex flex-row justify-center items-center gap-x-10'>
-                    <ProfileAvatar />
-                    <span className="md:text-xl font-bold md:block hidden">22 بهمن 1400</span>
-                </div>
+      <div className='md:col-span-10 col-span-12 space-y-5 md:pr-4'>
+        <div className='grid grid-cols-12 gap-x-4 gap-y-4'>
+            <div className='md:col-span-8 col-span-12 bg-white px-4 py-3 rounded-xl flex flex-row justify-start items-center gap-x-2'>
+              <DashboardSvg color='#005adc' />
+              <span className='text-secondary'>{pathname}</span>
+            </div>
+            <div className='md:col-span-4 col-span-12 flex flex-row justify-between items-center gap-x-4'>
+              <div className='flex flex-row justify-center items-center gap-x-2 bg-white px-4 py-3 rounded-xl'>
+                <span className='text-lg font-semibold text-ticket-head'>26</span>
+                <span>اسفند</span>
+                <span>1401</span>
+              </div>
+              <div className='flex flex-row justify-center items-center gap-x-2 rounded-xl bg-secondary w-full py-3 hover:bg-blue-700 transition duration-500 cursor-pointer'>
+                <AddIcon />
+                <span className='text-white text-sm font-bold'>افزودن مرخصی</span>
+              </div>
             </div>
         </div>
-        <div className='container pt-12 md:pb-12 pb-24 '>
+        <div className=' md:pb-12 pb-8  '>
          {children}
         </div>
         

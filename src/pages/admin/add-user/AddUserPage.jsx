@@ -5,7 +5,6 @@ import AddUserForm from '../../../validations/add-user/AddUserForm'
 
 const AddUserPage = () => {
   return (
-    <MainLayout adminLayout={true}>
       <div className='bg-white rounded-lg overflow-y-hidden'>
         <div className='flex flex-row justify-between items-center mb-6 bg-text-gray/10 px-4 py-3'>
             <span className='text-xl text-text-gray font-semibold'>افزودن کاربر</span>
@@ -17,7 +16,7 @@ const AddUserPage = () => {
             <AddUserForm />
         </div>
       </div>
-    </MainLayout>
+
   )
 }
 

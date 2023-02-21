@@ -7,7 +7,7 @@ const CircleChart = ({hasPeriod=true,percent=0}) => {
             <span className='text-text font-bold'>نمودار مرخصی</span>
             {
                 hasPeriod &&
-                <select className='text-text-gray text-sm'>
+                <select className='text-text-gray text-sm bg-secondary/5'>
                     <option>درماه</option>
                     <option>در سال</option>
                     <option>کل</option>

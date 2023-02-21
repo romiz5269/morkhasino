@@ -6,6 +6,9 @@
 body{
   background-color: #F5F5F9;
 }
+.bg-linear{
+  background: linear-gradient(180deg, #707DF6 0%, #9EA8FF 100%);
+}
 /* width */
 ::-webkit-scrollbar {
   width: 7px;
@@ -50,11 +53,28 @@ body{
   justify-content: center !important;
   transform: scale(1);
   box-shadow: none !important;
+  background-color: transparent !important;
   /* align-items: center !important; */
 }
 .rmdp-day{
-  width: 50px !important;
-  height: 50px !important;
+  width: 45px !important;
+  height: 45px !important;
+}
+
+.rmdp-day span{
+   border-radius: 5px !important;
+   background-color: #F5F5F5 !important;
+}
+.rmdp-day span:hover{
+  background-color: #488ef6 !important;
+}
+.rmdp-today span{
+  background-color: #326ABD !important;
+  border-radius: 5px !important;
+}
+.rmdp-today span:hover{
+  background-color: #245092 !important;
+  border-radius: 5px !important;
 }
 @media only screen and (max-width: 600px) {
   .rmdp-day{
@@ -150,4 +170,30 @@ body{
 }
 .MuiDataGrid-columnHeader .MuiDataGrid-columnSeparator{
   display: none !important;
+}
+
+
+.test{
+  -webkit-clip-path: polygon(5% 0, 100% 0, 100% 100%, 5% 100%, 0% 50%);
+  clip-path: polygon(5% 0, 100% 0, 100% 100%, 5% 100%, 0% 50%);
+  background: rgba(255, 255, 255, 0.4);
+
+/* border-radius: 40px 30px; */
+}
+
+.b1{
+  background: rgba(255, 255, 255, 0.5);
+  -webkit-clip-path: polygon(9% 0, 100% 0, 100% 100%, 9% 100%, 0% 50%);
+  clip-path: polygon(9% 0, 100% 0, 100% 100%, 9% 100%, 0% 50%);
+}
+.b2{
+  background: white;
+  -webkit-clip-path: polygon(15% 0, 100% 0, 100% 100%, 15% 100%, 0% 50%);
+  clip-path: polygon(15% 0, 100% 0, 100% 100%, 15% 100%, 0% 50%);
+}
+@media screen and (max-width: 768px) {
+  .b2,.b1,.test {
+   clip-path: none;
+   background-color: transparent !important;
+  }
 }

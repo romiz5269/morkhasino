@@ -1,5 +1,8 @@
 import { Box, Button, IconButton } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
+import DataTable from 'components/data-table/DataTable';
+import AddIcon from 'components/svg/add-icon/AddIcon';
+import PasswordEye from 'components/svg/password-eye/PasswordEye';
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import SearchBox from '../search-box/SearchBox'
@@ -48,7 +51,7 @@ const columns = [
     },
     { field: 'Actions', headerName: 'عملیات', 
     headerClassName: 'table-header',
-    width: 150, renderCell: (params) => {
+    width: 160, renderCell: (params) => {
       return (
         <div className='flex flex-row justify-center items-center gap-x-2  w-full'>
           <IconButton onClick={(e) => console.log(e,params)}>
@@ -61,6 +64,13 @@ const columns = [
           <IconButton onClick={(e) =>console.log(e,params)}>
             <TrashIcon
             
+            variant="contained"
+            size='20'
+            />
+          </IconButton>
+          <IconButton onClick={(e) =>console.log(e,params)}>
+            <PasswordEye
+            color='#333'
             variant="contained"
             size='20'
             />
@@ -92,7 +102,6 @@ const AdminDashboard = () => {
     const [currentPage,setCurentPage]=useState(1)
     const [data,setData]=useState(rows)
     useEffect(()=>{
-      console.log(rows.length , currentPage)
       if(rows.length < currentPage){
         console.log('disabled')
       }
@@ -105,80 +114,15 @@ const AdminDashboard = () => {
     <div>
       <Statistics />
       <div className='flex flex-row justify-between items-center'>
-        <div className='md:w-[300px] w-full'>
+        <div className='md:w-[390px] w-full bg-white rounded-xl'>
             <SearchBox />
         </div>
-        <Link to={'/admin/dashboard/add-user'} className='bg-main-blue px-5 py-3 flex flex-row justify-center items-center gap-x-2 rounded-lg cursor-pointer my-5'>
-            <span className='text-sm font-bold text-white'>افزودن کاربر</span>
+        <Link to={'/admin/dashboard/add-user'} className='bg-secondary px-16 py-3 flex flex-row justify-center items-center gap-x-2 rounded-lg cursor-pointer my-5'>
             <Plus />
+            <span className='text-sm font-bold text-white'>افزودن کاربر</span>
         </Link>
       </div>
-      <Box 
-        
-          sx={{
-            height: 410,
-            width: '100%',
-            '& .table-header': {
-              backgroundColor: ' #F9FAFB',
-              color: '#8A92A6',
-              fontFamily:'yekanbakh',
-              textAlign:'center',
-              fontWeight: '600',
-              border: '1px solid #EAECF0'
-            },
-            '& .table-row-odd': {
-                fontFamily:'yekanbakh',
-                textAlign:'center',
-                fontWeight: '600',
-                borderRight:'none !important'
-            },
-            '& .table-row-even': {
-                fontFamily:'yekanbakh',
-                textAlign:'center',
-                fontWeight: '600',
-                borderRight:'none !important'
-            },
-            '& .text-center': {
-              textAlign:'center',
-              fontWeight:'800'
-          },
-            
-          }}
-        >
-
-            <DataGrid
-                rows={data}
-                getRowClassName={(params) =>
-                    params.indexRelativeToCurrentPage % 2 === 0 ? 'table-row-even' : 'table-row-odd'
-                  }
-                components={{
-                  NoRowsOverlay:()=><div className='flex flex-col justify-center items-center h-full text-xl' style={{fontFamily:'yekanbakh'}}>موردی برای نمایش وجود ندارد</div>,
-                  NoResultsOverlay:()=><div className='flex flex-col justify-center items-center h-full text-xl' style={{fontFamily:'yekanbakh'}}>موردی برای نمایش وجود ندارد</div>,
-                  Pagination:()=><div className='flex flex-row justify-between items-center px-3 w-full my-2'>
-                    <button disabled={currentPage <= 1 ? true : false } className="bg-white border-2 border-[#D0D5DD] px-3 py-2 disabled:bg-[#D0D5DD] rounded-lg font-['yekanbakh']" onClick={()=>setCurentPage(prev=>prev-1)}>قبلی</button>
-                    <span className='text-sm font-semibold'>page{currentPage} of {Math.ceil(rows.length / page)}</span>
-                    <button  disabled={currentPage >= Math.ceil(rows.length/page) ? true : false } className={"bg-white border-2 border-[#D0D5DD] px-3 py-2 disabled:bg-[#D0D5DD] rounded-lg font-['yekanbakh']"} onClick={()=>setCurentPage(prev=>prev+1)}>بعدی</button>
-                  </div>
-                }}  
-                columns={columns}
-                // hideFooterPagination
-                // hideFooter
-                hideFooterSelectedRowCount
-                pageSize={page}
-                disableColumnMenu
-                disableColumnFilter
-                disableSelectionOnClick
-                
-                rowsPerPageOptions={[page]}
-                page={currentPage-1}
-                onPageChange={(p)=>setCurentPage(p)}
-                showCellRightBorder={true}
-               
-                // onRowClick={handleRowClick}
-                
-                // experimentalFeatures={{ newEditingApi: true }}
-            />
-        </Box>
+      <DataTable rows={rows} columns={columns} page={page} currentPage={currentPage} setCurrentPage={setCurentPage}  />
     </div>
   )
 }
