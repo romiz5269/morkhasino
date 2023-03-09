@@ -1,8 +1,35 @@
-import LogoSvg from 'components/svg/logo/LogoSvg'
-import React, { useState } from 'react'
-import LoginForm from '../../validations/Login/LoginForm'
+import LogoSvg from 'Components/global/svg/logo/LogoSvg'
+import { useNotif } from 'hooks/toast/useNotif'
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import LoginForm from 'Validations/Login/LoginForm'
 
 const LoginPage = () => {
+
+  const loginStatus = useSelector(state => state.users.loginStatus)
+  const dispatch = useDispatch()
+  useNotif(loginStatus,true)
+  // useEffect(()=>{
+  //   if(loginStatus.type === "error" && loginStatus.message){
+  //     toast.error(loginStatus.message, {
+  //       position: "top-center",
+  //       autoClose: 3000,
+  //       hideProgressBar: false,
+  //       closeOnClick: true,
+  //       pauseOnHover: true,
+  //       draggable: true,
+  //       progress: undefined,
+  //       theme: "light",
+  //       rtl:true,
+  //       style:{fontFamily:'yekanbakh',fontSize:"15px"}
+  //       });
+  //   }
+  //   const timeout = setTimeout(()=>{
+  //     dispatch(resetLoginStatus())
+  //   },5000)
+  //   return () => clearTimeout(timeout)
+  // },[loginStatus])
+
   return (
     <div className=' grid grid-cols-12'>
       <div className='md:col-span-4 col-span-12 md:px-20 md:h-auto h-full  flex flex-col items-center  relative '>

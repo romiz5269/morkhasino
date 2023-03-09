@@ -1,60 +1,13 @@
 import React, { useState } from 'react'
-import SearchBox from '../search-box/SearchBox'
-import Plus from '../svg/plus/Plus'
-import { DataGrid } from '@mui/x-data-grid';
-import { Box } from '@mui/system';
-import { Button, Pagination, Stack } from '@mui/material';
+import SearchBox from 'Components/global/search-box/SearchBox'
+import Plus from 'Components/global/svg/plus/Plus'
+import { IconButton, Pagination} from '@mui/material';
 import Select from 'react-select'
-import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
-import DataTable from 'components/data-table/DataTable';
-const columns = [
-    { field: 'id', headerName: 'ردیف', width: 60,headerClassName: 'table-header'},
-    {
-      field: 'created_date',
-      headerName: 'زمان ایجاد',
-      width: 150,
-      headerClassName: 'table-header',
-      sortable:false,
-    
-    },
-    {
-      field: 'ticket_type',
-      headerName: 'نوع تیکت',
-      width: 100,
-      headerClassName: 'table-header',
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import DataTable from 'Components/global/data-table/DataTable';
+import PasswordEye from 'Components/global/svg/password-eye/PasswordEye';
+import { useSelector } from 'react-redux';
 
-      sortable:false
-    
-    },
-    {
-      field: 'title',
-      headerName: 'عنوان',
-      width: 640,
-      headerClassName: 'table-header',
-      sortable:false
-    
-
-    },
-    {
-      field: 'status',
-      headerName: 'وضعیت',
-      width: 110,
-      headerClassName: 'table-header',
-      sortable:false
-        
-  
-    },
-    {
-        field: 'updated_date',
-        headerName: 'آخرین بروزرسانی',
-        width: 135,
-        headerClassName: 'table-header',
-        sortable:false
-      
-  
-    }
-
-  ];
   
   const rows = [
     { id: 1, created_date: '01/12/05', ticket_type: 'مرخصی', title: "اضافه مرخصی",status:"باز",updated_date:"01/12/05", },
@@ -86,10 +39,77 @@ const Tickets = () => {
     const [currentPage,setCurrentPage]=useState(1)
     const navigate = useNavigate()
     const location = useLocation()
-
+    const userRole = useSelector(state => state.users.userRole)
     const handleRowClick = (params) => {
-      navigate(`/panel/tickets/detail/45`);
+      navigate(`/${userRole}/dashboard/tickets/detail/${params.row.id && params?.row?.id}`);
     };
+    
+    const columns = [
+      { field: 'id', headerName: 'ردیف', width: 60,headerClassName: 'table-header'},
+      {
+        field: 'created_date',
+        headerName: 'زمان ایجاد',
+        width: 180,
+        headerClassName: 'table-header',
+        sortable:false,
+      
+      },
+      {
+        field: 'ticket_type',
+        headerName: 'نوع تیکت',
+        width: 150,
+        headerClassName: 'table-header',
+  
+        sortable:false
+      
+      },
+      {
+        field: 'title',
+        headerName: 'عنوان',
+        width: 540,
+        headerClassName: 'table-header',
+        sortable:false
+      
+  
+      },
+      {
+        field: 'status',
+        headerName: 'وضعیت',
+        width: 110,
+        headerClassName: 'table-header',
+        sortable:false
+          
+    
+      },
+      {
+          field: 'updated_date',
+          headerName: 'آخرین بروزرسانی',
+          width: 135,
+          headerClassName: 'table-header',
+          sortable:false
+        
+    
+      },
+      { field: 'Actions', headerName: 'مشاهده', 
+      headerClassName: 'table-header',
+      width: 150, renderCell: (params) => {
+        return (
+          <div className='flex flex-row justify-center items-center gap-x-2  w-full'>
+            
+            <IconButton onClick={(e) =>handleRowClick(params)}>
+              <PasswordEye
+              color='#333'
+              variant="contained"
+              size='20'
+              />
+            </IconButton>
+            
+            
+          </div>
+        );
+      } }
+  
+    ];
 
   return (
     <div className=' rounded-lg'>
@@ -98,14 +118,17 @@ const Tickets = () => {
         <div className='md:w-[420px] w-full bg-white rounded-xl'>
             <SearchBox />
         </div>
-        <Link to={`${location.pathname}/create`} className='bg-secondary flex flex-row justify-center items-center gap-x-2 px-16 py-3 rounded-lg cursor-pointer md:w-auto w-full'>
+        {
+          (userRole === "user") &&
+          <Link to={`${location.pathname}/create`} className='bg-secondary flex flex-row justify-center items-center gap-x-2  py-3 rounded-lg cursor-pointer md:w-[240px] w-full'>
             <span className='text-white text-sm font-bold'>ایجاد تیکت</span>
             <Plus />
         </Link>
+        }
       </div>
 
         <DataTable rows={rows} columns={columns} page={page} currentPage={currentPage}
-         setCurrentPage={setCurrentPage} handleRowClick={handleRowClick}
+         setCurrentPage={setCurrentPage} 
           />
 
         <div  className='flex md:flex-row flex-col justify-between items-start gap-y-4 bg-white my-4 p-4 rounded-lg'>

@@ -1,6 +1,6 @@
 import { withFormik } from 'formik'
 import React from 'react'
-import InnerAddVacation from '../../components/forms/add-vacation/InnerAddVacation'
+import InnerAddVacation from 'Components/forms/add-vacation/InnerAddVacation'
 
 
 
@@ -16,7 +16,7 @@ const AddVacationForm = withFormik({
                 description:""
             }
         ],
-        file:null
+        file:[]
 
     }),
     // validationSchema:LoginFormValidationSchema,

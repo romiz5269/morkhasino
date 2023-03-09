@@ -1,12 +1,16 @@
 import React, { useState } from 'react'
-import { Navigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { Navigate, Outlet } from 'react-router-dom'
 
 const ProtectedRoute = ({children}) => {
-    const [auth,setAuth]=useState(true)
-    if(auth){
-        return <Navigate to={'/panel'} />
+    const userIn = useSelector(state => state.users.userIn)
+    const userRole = useSelector(state => state.users.userRole)
+    if(userIn){
+        
+        return <Navigate to={`/${userRole}/dashboard`} />
+    }else{
+        return <Outlet />
     }
-    return children
 }
 
 export default ProtectedRoute

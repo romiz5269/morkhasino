@@ -1,5 +1,5 @@
 import { withFormik } from "formik";
-import InnerAddUserForm from "../../components/forms/add-user/InnerAddUserForm";
+import InnerAddUserForm from "Components/forms/add-user/InnerAddUserForm";
 
 
 

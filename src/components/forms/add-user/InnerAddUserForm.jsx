@@ -1,11 +1,10 @@
 import { Field, Form } from 'formik'
 import React from 'react'
-import ProfileAvatar from '../../profile-avatar/ProfileAvatar'
 import TextField from '@mui/material/TextField';
 import AdapterJalali from '@date-io/date-fns-jalali';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import Plus from 'components/svg/plus/Plus';
+import Plus from 'Components/global/svg/plus/Plus';
 
 
 const InnerAddUserForm = (props) => {
@@ -13,11 +12,11 @@ const InnerAddUserForm = (props) => {
 
   return (
     <Form className='w-full grid grid-cols-12 gap-x-3'>
-        <div className='col-span-3 flex flex-row justify-center items-start pt-5'>
+        {/* <div className='col-span-3 flex flex-row justify-center items-start pt-5'>
             <ProfileAvatar size={151} />
-        </div>
-        <div className='col-span-9 space-y-7'>
-          <div className='flex flex-row justify-start items-center gap-x-8'>
+        </div> */}
+        <div className='col-span-12 space-y-7'>
+          <div className='flex md:flex-row flex-col justify-start items-center gap-8'>
             <div className='flex flex-col gap-y-2 flex-1'>
               <label className='font-semibold text-sm'>نام و نام خانوادگی</label>
               <Field name="fullname" placeholder="علیرضا ریاحی" className="bg-white border-2 border-main-color/40 rounded-lg py-2 px-3" />
@@ -27,7 +26,7 @@ const InnerAddUserForm = (props) => {
               <Field name="field"  placeholder="توسعه دهنده فرانت" className="bg-white border-2 border-main-color/40 rounded-lg py-2 px-3" />
             </div>
           </div>
-          <div className='flex flex-row justify-start items-center gap-x-8'>
+          <div className='flex md:flex-row flex-col justify-start items-center gap-8'>
             <div className='flex flex-col gap-y-2 flex-1'>
               <label className='font-semibold text-sm'>شماره تماس</label>
               <Field name="phone_number"  className="bg-white border-2 border-main-color/40 rounded-lg py-2 px-3" />
@@ -37,7 +36,7 @@ const InnerAddUserForm = (props) => {
               <Field name="email"  className="bg-white border-2 border-main-color/40 rounded-lg py-2 px-3" />
             </div>
           </div>
-          <div className='flex flex-row justify-start items-center gap-x-8'>
+          <div className='flex md:flex-row flex-col justify-start items-center gap-8'>
             <div className='flex flex-col gap-y-2 flex-1'>
               <label className='font-semibold text-sm'>تاریخ شروع قرارداد</label>
               <LocalizationProvider dateAdapter={AdapterJalali}>

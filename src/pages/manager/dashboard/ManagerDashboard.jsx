@@ -1,17 +1,17 @@
 
-import Statistics from 'components/statistics/Statistics'
-import ChevronDown from 'components/svg/chevron-down/ChevronDown'
-import MainLayout from 'layout'
+import Statistics from 'Components/global/statistics/Statistics'
+import ChevronDown from 'Components/global/svg/chevron-down/ChevronDown'
+import MainLayout from 'Layout'
 import React, { useState } from 'react'
 
 const ManagerDashboard = () => {
     const [accordion,setAccordion]=useState(false)
   return (
-    <>
+    <MainLayout managerLayout={true}>
       <Statistics />
       <div className='grid grid-cols-12 gap-x-5 my-3'>
-        <div className='col-span-8'></div>
-        <div className='col-span-4 bg-white rounded-lg shadow-main p-4 relative min-h-[300px] overflow-y-hidden'>
+        <div className='md:col-span-8 col-span-12 md:order-1 order-2'></div>
+        <div className='md:col-span-4 col-span-12 md:order-2 order-1 bg-white rounded-lg shadow-main p-4 relative min-h-[300px] overflow-y-hidden'>
             <div className='absolute flex flex-row justify-center items-center w-full text-sm font-bold inset-0 z-20 h-12'>
                 عملکرد ادمین ها
             </div>
@@ -56,7 +56,7 @@ const ManagerDashboard = () => {
             </p>
         </div>
       </div>
-    </>
+    </MainLayout>
   )
 }
 

@@ -1,5 +1,5 @@
 import { withFormik } from "formik";
-import InnerAddTicketForm from "../../components/forms/add-ticket/InnerAddTicketForm";
+import InnerAddTicketForm from "Components/forms/add-ticket/InnerAddTicketForm";
 
 
 

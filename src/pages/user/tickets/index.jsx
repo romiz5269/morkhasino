@@ -1,6 +1,6 @@
 import React from 'react'
-import MainLayout from '../../../layout'
-import Tickets from '../../../components/tickets/Tickets'
+import MainLayout from 'Layout'
+import Tickets from 'Components/tickets/Tickets'
 const TicketsPage = () => {
   return (
     <MainLayout>
