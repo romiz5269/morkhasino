@@ -105,7 +105,6 @@ const AdminDashboardPage = () => {
     const [data,setData]=useState(rows)
     const {userData,error} = useAuth()
     const loginStatus = useSelector(state=>state.users.loginStatus)
-
     useNotif(loginStatus,false)
 
     useEffect(()=>{

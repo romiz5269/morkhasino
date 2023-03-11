@@ -25,8 +25,9 @@ export const UsersSlice = createSlice({
             state.loginStatus.message = ""
         }
     },
-    extraReducers:{
-        [UserLogin.fulfilled]:(state,action) => {
+    extraReducers:(builder)=>{
+        builder
+        .addCase(UserLogin.fulfilled,(state,action)=>{
             console.log(action.payload)
             state.accessToken = action.payload.access_token;
             state.refreshToken = action.payload.refresh_token;
@@ -41,13 +42,34 @@ export const UsersSlice = createSlice({
             }
             state.loginStatus.type = "success"
             state.loginStatus.message = action.payload.message
-        },
-        [UserLogin.rejected]:(state,action) => {
+        })
+        .addCase(UserLogin.rejected,(state,action)=>{
             state.loginStatus.type = "error"
             state.loginStatus.message = action.error.message
+        })
+        
+        // [UserLogin.fulfilled]:(state,action) => {
+        //     console.log(action.payload)
+        //     state.accessToken = action.payload.access_token;
+        //     state.refreshToken = action.payload.refresh_token;
+        //     localStorage.setItem("access_token",action.payload.access_token)
+        //     localStorage.setItem("refresh_token",action.payload.refresh_token)
+        //     state.userIn = true
+        //     if(action.payload.user.role.name === "member")
+        //     {
+        //         state.userRole = "user"
+        //     }else{
+        //         state.userRole = action.payload.user.role.name
+        //     }
+        //     state.loginStatus.type = "success"
+        //     state.loginStatus.message = action.payload.message
+        // },
+        // [UserLogin.rejected]:(state,action) => {
+        //     state.loginStatus.type = "error"
+        //     state.loginStatus.message = action.error.message
             
 
-        }
+        // }
     }
 })
 

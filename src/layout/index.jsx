@@ -6,6 +6,10 @@ import { Link, useLocation } from 'react-router-dom'
 import AdminSidebar from '../Components/sidebars/admin-sidebar/AdminSidebar'
 import Sidebar from '../Components/sidebars/user-sidebar/Sidebar'
 import DashboardSvg from '../Components/global/svg/dashboard/DashboardSvg'
+import { useAuth } from 'hooks/persist/useAuth'
+import { Routes } from 'Configs/routes/Routes.config'
+import callApi from 'Services/axios/private/PrivateAxios'
+import axios from 'axios'
 
 const checkLocationPathname = () =>{
   switch (window.location.pathname) {
@@ -42,7 +46,11 @@ const checkLocationPathname = () =>{
 const MainLayout = ({children,adminLayout=false,managerLayout=false}) => {
   // const location = useLocation()
     const [openSidebar,setOpenSidebar]= useState(false)
-    const [pathname,setPathname] = useState(checkLocationPathname() )
+    const [pathname,setPathname] = useState(checkLocationPathname())
+    // const {userData,error} = useAuth()
+    useEffect(()=>{
+      axios.get('http://vacations.villarzan.com/v1/user').then(res => console.log(res.data)).catch(err => console.log(err))
+  },[])
     const location = useLocation()
     useEffect(()=>{
       setPathname(checkLocationPathname())

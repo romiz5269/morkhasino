@@ -5,6 +5,7 @@ import PublicAxios from "../public/publicAxios";
 const callApi = () => {
     const PrivateApi = axios.create({
       baseURL: URL.baseUrl,
+      withCredentials:true,
     });
   
     PrivateApi.interceptors.request.use(async (req) => {
@@ -20,7 +21,8 @@ const callApi = () => {
   
       //set authToken as authorization header in req structure
   
-      req.headers["Authorization"] = [`Bearer ${access_token}`,`${refresh_token}`];
+      req.headers["Authorization"] = [`Bearer ${access_token}`];
+      // req.headers["Access-Control-Allow-Origin"] =true
   
       // set expiration lifeCycle
       if (access_token === null || access_token === undefined) return req;

@@ -1,3 +1,4 @@
+import { Routes } from "Configs/routes/Routes.config"
 import { useEffect, useState } from "react"
 import callApi from "Services/axios/private/PrivateAxios"
 
@@ -10,7 +11,7 @@ export const useAuth = () => {
     const [data,setData] = useState([])
     const [error,setError] = useState("")
     useEffect(()=>{
-        callApi().get('/user/').then(res => setData(res.data)).catch(err => setError(err))
+        callApi().get(Routes.GET_USER).then(res => setData(res.data)).catch(err => setError(err))
     },[])
 
     return {

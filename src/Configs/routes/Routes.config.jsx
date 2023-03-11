@@ -1,3 +1,7 @@
 export const Routes = {
-    ADD_USER : '/add-user'
+    LOGIN : '/login',
+    LOGOUT:'/logout',
+    REFRESH:'/refresh',
+    GET_USER:'/user'
+
 }
