@@ -1,0 +1,234 @@
+@import "./fonts.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+  background-color: #F5F5F9;
+}
+.bg-linear{
+  background: linear-gradient(180deg, #707DF6 0%, #9EA8FF 100%);
+}
+/* width */
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgba(217, 217, 217, 0.38);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #326ABD;
+  border-radius: 16px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+.main-shadow{
+  box-shadow: 0px 10px 30px rgba(17, 38, 146, 0.05);
+}
+.main-border{
+  border:2px solid #D1D1D1;
+}
+.divider-horizontal{
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+.divider-vertical{
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  transform: rotate(90deg);
+  width: 62px;
+}
+
+/* calender */
+.rmdp-wrapper{
+  width: 100% !important; 
+  text-align: center !important;
+  display: flex;
+  flex-direction: row;
+  justify-content: center !important;
+  transform: scale(1);
+  box-shadow: none !important;
+  background-color: transparent !important;
+  /* align-items: center !important; */
+}
+.rmdp-day{
+  width: 45px !important;
+  height: 45px !important;
+}
+
+.rmdp-day span{
+   border-radius: 5px !important;
+   background-color: #F5F5F5 !important;
+}
+.rmdp-day span:hover{
+  background-color: #488ef6 !important;
+}
+.rmdp-today span{
+  background-color: #326ABD !important;
+  border-radius: 5px !important;
+}
+.rmdp-today span:hover{
+  background-color: #245092 !important;
+  border-radius: 5px !important;
+}
+@media only screen and (max-width: 600px) {
+  .rmdp-day{
+    width: 43px !important;
+    height:43px !important;
+  }
+}
+@media only screen and (max-width: 1470px) {
+  .rmdp-day{
+    width: 41px !important;
+    height:41px !important;
+  }
+}
+.sidebar-box{
+  width: 0;
+  transition: width 2s;
+}
+
+/*  circle chart */
+.card:nth-child(1) svg circle:last-of-type {
+  stroke: #f39c12;
+}
+.card .percent {
+  position: relative;
+}
+.card svg {
+  position: relative;
+  width: 210px;
+  height: 210px;
+  transform: rotate(-90deg);
+}
+
+.card svg circle {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: #f0f0f0;
+  stroke-width: 8;
+  stroke-linecap: round;
+}
+
+.card svg circle:last-of-type {
+  stroke-dasharray: 625px;
+  stroke-dashoffset: calc(625px - (625px * var(--percent)) / 100);
+  stroke: #326ABD; 
+}
+
+
+/* material mui pagination */
+.MuiPagination-ul{
+  background: transparent !important;
+}
+.MuiPagination-ul li{
+  background: #FFFFFF !important;
+  border: 1px solid #DFE3E8 !important;
+  border-radius: 4px !important;
+  margin: 0 2px;
+  height: 35px;
+  width: 35px;
+  display: flex ;
+  flex-direction: row;
+  justify-content: center;
+  justify-items: center;
+}
+.MuiPagination-ul li button{
+  width: 100%;
+  height: 100%;
+  border: none ;
+}
+
+.Mui-selected {
+  background-color: transparent !important;
+  margin: 0 1px;
+  color: #4200FF  !important;
+  border:2px solid #4200FF  !important;
+
+}
+.Mui-selected svg{
+  color: #4200FF  !important;
+  
+}
+.MuiDataGrid-cellContent:nth-child(1){
+  text-align: center !important;
+  width: 100%;
+}
+.MuiDataGrid-columnHeaderTitle{
+  text-align: center !important;
+  width: 100%;
+}
+
+.MuiDataGrid-columnHeaderTitleContainerContent{
+  width: 100%;
+}
+.MuiDataGrid-columnHeader .MuiDataGrid-columnSeparator{
+  display: none !important;
+}
+
+
+.test{
+  -webkit-clip-path: polygon(5% 0, 100% 0, 100% 100%, 5% 100%, 0% 50%);
+  clip-path: polygon(5% 0, 100% 0, 100% 100%, 5% 100%, 0% 50%);
+  background: rgba(255, 255, 255, 0.4);
+
+/* border-radius: 40px 30px; */
+}
+
+.b1{
+  background: rgba(255, 255, 255, 0.5);
+  -webkit-clip-path: polygon(9% 0, 100% 0, 100% 100%, 9% 100%, 0% 50%);
+  clip-path: polygon(9% 0, 100% 0, 100% 100%, 9% 100%, 0% 50%);
+}
+.b2{
+  background: white;
+  -webkit-clip-path: polygon(15% 0, 100% 0, 100% 100%, 15% 100%, 0% 50%);
+  clip-path: polygon(15% 0, 100% 0, 100% 100%, 15% 100%, 0% 50%);
+}
+@media screen and (max-width: 768px) {
+  .b2,.b1,.test {
+   clip-path: none;
+   background-color: transparent !important;
+  }
+}
+
+/*  upload file thumbs  */
+.thumbsContainer{
+  display: 'flex';
+  flex-direction: 'row';
+  flex-wrap: 'wrap';
+  margin-top: 16;
+}
+
+.thumb{
+  display: 'inline-flex';
+  border-radius: 2;
+  border: '1px solid #eaeaea';
+  margin-bottom: 8;
+
+  width: 100;
+  height: 100;
+  padding: 4;
+  box-sizing: 'border-box';
+}
+
+.thumbInner{
+  display: 'flex';
+  min-width: 0;
+  overflow: 'hidden';
+}
+
+/* mui classes */
+
+.MuiDataGrid-menuIcon button{
+  color: white !important;
+}
+.MuiDataGrid-iconButtonContainer button{
+  color: white !important;
+}
