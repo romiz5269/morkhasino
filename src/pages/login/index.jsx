@@ -6,7 +6,7 @@ import LoginForm from 'Validations/Login/LoginForm'
 
 const LoginPage = () => {
 
-  const loginStatus = useSelector(state => state.users.loginStatus)
+  const loginStatus = useSelector(state => state.users.status)
   const dispatch = useDispatch()
   useNotif(loginStatus,true)
   // useEffect(()=>{

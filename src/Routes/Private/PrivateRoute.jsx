@@ -6,6 +6,7 @@ const PrivateRoute = ({role}) => {
 
     const userRole = useSelector(state => state.users.userRole)
     const userIn = useSelector(state => state.users.userIn)
+    const loading = useSelector(state => state.users.userLoading)
     const navigate = useNavigate()
 
     // change body background color
@@ -14,19 +15,19 @@ const PrivateRoute = ({role}) => {
     },[])
 
 
-    /* redirect to role dashboard when role changes */
-    useEffect(()=>{
-        navigate(`/${userRole}/dashboard`)
-    },[userRole])
+    // /* redirect to role dashboard when role changes */
+    // useEffect(()=>{
+    //     navigate(`/${userRole}/dashboard`)
+    // },[userRole])
 
-    useEffect(()=>{
-        if(!userIn){
-            navigate('/login')
-        }
-    },[userIn])
+    // useEffect(()=>{
+    //     if(!userIn && !userRole){
+    //         navigate('/login')
+    //     }
+    // },[userIn])
 
     // handle role base routing
-    if(userIn){
+    if(userIn && userRole){
        if(role === userRole){
         return <Outlet />
        }else{

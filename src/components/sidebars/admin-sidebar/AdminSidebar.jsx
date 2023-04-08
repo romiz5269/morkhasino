@@ -29,11 +29,11 @@ const AdminSidebar = ({setOpenSidebar}) => {
             </div> */}
         </div>
         <div className='flex flex-col items-end h-full gap-y-5 mt-10'>
-            <div onClick={()=>navigate('/admin/dashboard')} className={`grid grid-cols-12 px-3  py-2 relative ${(pathname === "/admin/dashboard" || pathname === "/admin/dashboard/users/create") && 'bg-secondary'}  w-11/12 cursor-pointer rounded-r-full `}>
-                <div className={` col-span-3 flex flex-row justify-center  items-center ml-4 ${(pathname === "/admin/dashboard" || pathname === "/admin/dashboard/users/create") ? 'bg-white' : 'bg-secondary/10'} w-[40px] h-[40px] rounded-full `}>
+            <div onClick={()=>navigate('/admin/dashboard')} className={`grid grid-cols-12 px-3  py-2 relative ${(pathname === "/admin/dashboard" ) && 'bg-secondary'}  w-11/12 cursor-pointer rounded-r-full `}>
+                <div className={` col-span-3 flex flex-row justify-center  items-center ml-4 ${(pathname === "/admin/dashboard" ) ? 'bg-white' : 'bg-secondary/10'} w-[40px] h-[40px] rounded-full `}>
                     <DashboardSvg color='#4E5FFF' width={20} height={20}  />
                 </div>
-                <div className={`col-span-7 flex flex-row justify-start items-center ${(pathname === "/admin/dashboard" || pathname === "/admin/dashboard/users/create") ? 'font-bold text-white' : 'text-slate-500'}  mr-3`}>
+                <div className={`col-span-7 flex flex-row justify-start items-center ${(pathname === "/admin/dashboard" ) ? 'font-bold text-white' : 'text-slate-500'}  mr-3`}>
                         داشبورد
                 </div>
             </div>

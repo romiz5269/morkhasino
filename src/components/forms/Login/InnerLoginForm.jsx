@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux'
 
 const InnerLoginForm = ({props}) => {
     const [showPass,setShowPass]=useState(false)
-    const loginStatus = useSelector(state => state.users.loginStatus)
+    const loginStatus = useSelector(state => state.users.status)
   return (
     <Form className='w-full h-full flex flex-col gap-y-5'>
         <h2 className='font-semibold text-lg self-center mb-3'>ورود به حساب کاربری</h2>

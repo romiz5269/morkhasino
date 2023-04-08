@@ -4,7 +4,7 @@ import { AdminPages, ManagerPages, RootPages, UsersPages } from 'Configs/Pages/P
 import AdminUsers from 'Pages/admin/users'
 import ManagerDashboard from 'Pages/manager/dashboard/ManagerDashboard'
 import NotFound from 'Pages/not-found'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter as Router,Routes,Route, Navigate } from 'react-router-dom'
 import AddUserPage from 'Pages/admin/users/add-user/AddUserPage'
 import LoginPage from 'Pages/login'
@@ -27,9 +27,19 @@ import ManagerTicketsPage from 'Pages/manager/tickets'
 import ManagerDetailTicketPage from 'Pages/manager/tickets/detail'
 import ManagerRulesPage from 'Pages/manager/rules'
 import ManagerDetailRequestPage from 'Pages/manager/requests/detail'
+import callApi from 'Services/axios/private/PrivateAxios'
+import { useDispatch } from 'react-redux'
+import { setLoginStates, userLogout } from 'Services/management/slices/userSlice'
+import EditUserPage from 'Pages/admin/users/edit-user/EditUserPage'
+import ManagerEditUserPage from 'Pages/manager/users/edit-user'
 
 const MainRoute = () => {
+  const dispatch = useDispatch()
   
+  useEffect(()=>{
+    callApi().get('/user/',{withCredentials:true}).then(res => dispatch(setLoginStates({userIn:true,userRole:res.data[0].role.name,data:res.data}))).catch(err => dispatch(userLogout()))
+   },[])
+   
   return (
     <Router>
       <Routes>
@@ -63,7 +73,7 @@ const MainRoute = () => {
           <Route path={AdminPages.SINGLE_TICKET} element={<AdminDetailTicketPage />} />
           <Route path={AdminPages.SHOW_USERS} element={<AdminUsers />} />
           <Route path={AdminPages.ADD_USER} element={<AddUserPage />} />
-          <Route path={AdminPages.EDIT_USER} element={<AddUserPage />} />
+          <Route path={AdminPages.EDIT_USER} element={<EditUserPage />} />
 
         </Route>
 
@@ -76,7 +86,7 @@ const MainRoute = () => {
           <Route path={ManagerPages.DASHBOARD} element={<ManagerDashboard />} />
           <Route path={ManagerPages.SHOW_USERS} element={<ManagerUsersPage />} />
           <Route path={ManagerPages.ADD_USER} element={<ManagerAddUserPage />} />
-          <Route path={ManagerPages.EDIT_USER} element={<ManagerAddUserPage />} />
+          <Route path={ManagerPages.EDIT_USER} element={<ManagerEditUserPage />} />
           <Route path={ManagerPages.REQUESTS} element={<ManagerRequestsPage />} />
           <Route path={ManagerPages.SINGLE_REQUEST} element={<ManagerDetailRequestPage />} />
           <Route path={ManagerPages.TICKETS} element={<ManagerTicketsPage />} />

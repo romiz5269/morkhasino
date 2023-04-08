@@ -10,6 +10,8 @@ import { useAuth } from 'hooks/persist/useAuth'
 import { Routes } from 'Configs/routes/Routes.config'
 import callApi from 'Services/axios/private/PrivateAxios'
 import axios from 'axios'
+import { useDispatch } from 'react-redux'
+import { setLoginStates, userLogout } from 'Services/management/slices/userSlice'
 
 const checkLocationPathname = () =>{
   switch (window.location.pathname) {
@@ -27,13 +29,13 @@ const checkLocationPathname = () =>{
         return "افزودن تیکت";
       case "/admin/dashboard":
         return "داشبورد";
-      case "/admin/dashboard/add-user":
+      case "/admin/dashboard/users/create":
         return "افزودن کاربر";
-      case "/admin/requests":
+      case "/admin/dashboard/requests":
         return "مرخصی ها";
-      case "/admin/users":
+      case "/admin/dashboard/users":
         return "اعضا شرکت";
-      case "/admin/tickets":
+      case "/admin/dashboard/tickets":
           return "تیکت ها";
       case "/manager/dashboard":
         return "داشبورد";
@@ -47,10 +49,15 @@ const MainLayout = ({children,adminLayout=false,managerLayout=false}) => {
   // const location = useLocation()
     const [openSidebar,setOpenSidebar]= useState(false)
     const [pathname,setPathname] = useState(checkLocationPathname())
+    const dispatch = useDispatch()
     // const {userData,error} = useAuth()
-    useEffect(()=>{
-      axios.get('http://vacations.villarzan.com/v1/user').then(res => console.log(res.data)).catch(err => console.log(err))
-  },[])
+   
+
+    // useEffect(()=>{
+    //   if(!localStorage.getItem("access_token")){
+    //       dispatch(userLogout())
+    //   }
+    // },[])
     const location = useLocation()
     useEffect(()=>{
       setPathname(checkLocationPathname())

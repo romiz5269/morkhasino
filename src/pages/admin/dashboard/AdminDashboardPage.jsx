@@ -11,7 +11,8 @@ import TrashIcon from 'Components/global/svg/trash/TrashIcon';
 import MainLayout from 'Layout';
 import { useAuth } from 'hooks/persist/useAuth';
 import { useNotif } from 'hooks/toast/useNotif';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { CatchWorkFields } from 'Services/management/slices/userSlice';
 
 
 const columns = [
@@ -104,9 +105,13 @@ const AdminDashboardPage = () => {
     const [currentPage,setCurentPage]=useState(1)
     const [data,setData]=useState(rows)
     const {userData,error} = useAuth()
-    const loginStatus = useSelector(state=>state.users.loginStatus)
+    const dispatch = useDispatch()
+    const loginStatus = useSelector(state=>state.users.status)
     useNotif(loginStatus,false)
 
+    useEffect(()=>{
+      dispatch(CatchWorkFields())
+    },[])
     useEffect(()=>{
       if(rows.length < currentPage){
         console.log('disabled')

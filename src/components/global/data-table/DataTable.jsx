@@ -1,14 +1,16 @@
 import { Box } from '@mui/system'
-import { DataGrid, GridToolbar,GridFilterModel,GridLinkOperator } from '@mui/x-data-grid'
+import { DataGrid } from '@mui/x-data-grid'
+import { CustomComponents, FilterAndColumnCustomize } from 'Configs/mui-configs/MuiConfigs'
 import React from 'react'
-
-const DataTable = ({rows,columns,page,currentPage,setCurrentPage,ref}) => {
+import {BiFilterAlt} from 'react-icons/bi'
+import {MdArrowDownward, MdArrowUpward} from 'react-icons/md'
+const DataTable = ({rows,columns,page,currentPage,setCurrentPage,ref,loading}) => {
 
   return (
     <Box 
         
           sx={{
-            height: 320,
+            height: 520,
             width: '100%',
             '& .table-header': {
               backgroundColor: '#212135',
@@ -43,16 +45,14 @@ const DataTable = ({rows,columns,page,currentPage,setCurrentPage,ref}) => {
             <DataGrid
                 ref={ref}
                 rows={rows}
+                
                 getRowClassName={(params) =>
                     params.indexRelativeToCurrentPage % 2 === 0 ? 'table-row-even' : 'table-row-odd'
-                  }
-                components={{
-                  NoRowsOverlay:()=><div className='flex flex-col justify-center items-center h-full text-xl' style={{fontFamily:'yekanbakh'}}>موردی برای نمایش وجود ندارد</div>,
-                  NoResultsOverlay:()=><div className='flex flex-col justify-center items-center h-full text-xl' style={{fontFamily:'yekanbakh'}}>موردی برای نمایش وجود ندارد</div>,
-                  Toolbar:GridToolbar,
-                  
-                  
-                }}  
+                }
+
+                components={CustomComponents}  
+                loading = {loading}
+                localeText={FilterAndColumnCustomize}
                 columns={columns}
                 hideFooterPagination
                 hideFooter
@@ -61,6 +61,7 @@ const DataTable = ({rows,columns,page,currentPage,setCurrentPage,ref}) => {
                 pageSize={page}
                 // disableColumnMenu
                 // disableColumnFilter
+                // paginationMode="server"
                 disableSelectionOnClick
                 rowsPerPageOptions={[page]}
                 page={currentPage-1}

@@ -223,3 +223,12 @@ body{
   min-width: 0;
   overflow: 'hidden';
 }
+
+/* mui classes */
+
+.MuiDataGrid-menuIcon button{
+  color: white !important;
+}
+.MuiDataGrid-iconButtonContainer button{
+  color: white !important;
+}

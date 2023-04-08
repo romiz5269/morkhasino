@@ -7,6 +7,6 @@ export async function Login(data){
         console.log(data)
         PublicAxios.post(Routes.LOGIN,data,{
             headers: { "Content-Type": "application/json" },
-        }).then(res=>resolve(res.data)).catch(err=>reject(err?.response?.data?.detail[0]))
+        }).then(res=>resolve(res.data)).catch(err=>reject({message:err?.response?.data?.detail[0],code:err?.response?.status}))
     })
 }

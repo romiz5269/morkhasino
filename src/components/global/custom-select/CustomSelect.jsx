@@ -6,22 +6,22 @@ const CustomSelect = ({options,placeholder,name,className,defaultValue,onChange}
                 defaultValue={defaultValue}
                 onChange={onChange}
                 styles={{
-                  placeholder:styles=>({
-                    ...styles,
-                    color:'#4E5FFF'
-                  }),
-                  singleValue : styles => ({
-                      ...styles,
-                      color:'#4E5FFF',
-                  }),            
-                  input: styles => ({
-                    ...styles,
-                    color:"#4E5FFF"
-                  }),
-                  option:styles => ({
-                    ...styles,
-                    color:'#4E5FFF',
-                  }),
+                //   placeholder:styles=>({
+                //     ...styles,
+                //     color:'#4E5FFF'
+                //   }),
+                //   singleValue : styles => ({
+                //       ...styles,
+                //       color:'#4E5FFF',
+                //   }),            
+                //   input: styles => ({
+                //     ...styles,
+                //     color:"#4E5FFF"
+                //   }),
+                //   option:styles => ({
+                //     ...styles,
+                //     color:'#4E5FFF',
+                //   }),
                   control:styles => ({
                     ...styles,
                     border:'none',

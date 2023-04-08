@@ -1,5 +1,5 @@
 import React from 'react'
-import CircleClose from 'Components/global/svg/circle-close/CircleClose'
+import { AiOutlineClose } from 'react-icons/ai'
 
 const Modal = ({handleExitModal,title,children,height="580",className}) => {
   return (
@@ -9,7 +9,7 @@ const Modal = ({handleExitModal,title,children,height="580",className}) => {
                 <div className='p-2  cursor-pointer'
                     onClick={(e)=>handleExitModal(false)}
                 >
-                    <CircleClose />
+                    <AiOutlineClose className='text-slate-800' size={"23"} />
                 </div>
             </div>
         

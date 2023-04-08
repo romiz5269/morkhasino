@@ -2,10 +2,17 @@
 import Statistics from 'Components/global/statistics/Statistics'
 import ChevronDown from 'Components/global/svg/chevron-down/ChevronDown'
 import MainLayout from 'Layout'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { CatchWorkFields } from 'Services/management/slices/userSlice'
 
 const ManagerDashboard = () => {
     const [accordion,setAccordion]=useState(false)
+    const dispatch = useDispatch()
+    
+    useEffect(()=>{
+        dispatch(CatchWorkFields())
+    },[])
   return (
     <MainLayout managerLayout={true}>
       <Statistics />
